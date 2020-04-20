@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import net.bytebuddy.asm.Advice.Return;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -106,9 +104,13 @@ public class Employe {
         //Au pro rata du temps partiel.
         return prime * this.tempsPartiel;
     }
-
-    //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+    
+  //Augmenter salaire
+    public void augmenterSalaire(double pourcentage) {
+    	if(salaire != null  && salaire > 0) {
+    		this.salaire = this.salaire * (1+ pourcentage);
+    	}
+    }
 
     public Long getId() {
         return id;
